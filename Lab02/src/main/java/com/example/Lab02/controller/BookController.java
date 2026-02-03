@@ -4,29 +4,19 @@ import com.example.Lab02.model.Book;
 import com.example.Lab02.service.BookService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Arrays;
 import java.util.List;
 
 @RestController
-@RequestMapping("/books")
-@RequiredArgsConstructor
+@RequestMapping("/api")
+
 public class BookController {
 
-    private final BookService bookService;
+    @GetMapping("/books")
+    public List<Book> getBooks() {
 
-    @GetMapping
-    public List<Book> getAllBooks() {
-        return bookService.getAllBook();
+        return Arrays.asList(new Book (2025, "J2EE", "Kim Nghi"));
     }
 
-
-    @GetMapping("/{id}")
-    public Book getBookById(@PathVariable int id) {
-        return bookService.getBookById(id);
-    }
-
-
-    @PostMapping
-    public void addBook(@RequestBody Book book) {
-        bookService.addBook(book);
-    }
 }
